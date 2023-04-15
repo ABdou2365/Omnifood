@@ -26,6 +26,9 @@
                             <th scope="col" class="px-6 py-3">
                                 image
                             </th>
+                            <th scope="col" class="px-6 py-3">
+
+                            </th>
                         </tr>
                     </thead>
                     <tbody>
@@ -40,6 +43,20 @@
                                 </td>
                                 <td class="px-6 py-4">
                                     <img src="{{ Storage::url($Category->image) }}" class="w-16 h-16">
+                                </td>
+                                <td class="px-6 py-4">
+                                    <div class="flex space-x-2 ">
+                                        <a href="{{ route('admin.categories.edit', $Category->id) }}"
+                                            class="px-4 py-2 bg-green-500 hover:bg-green-700 rounded-lg text-white">Edit</a>
+                                        <form action="{{ route('admin.categories.destroy', $Category->id) }}"
+                                            onsubmit="return confirm('Are you sure you want to delete this category ?');"
+                                            method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit"
+                                                class="px-4 py-2 bg-red-500 hover:bg-red-700 rounded-lg text-white">Delete</button>
+                                        </form>
+                                    </div>
                                 </td>
                             </tr>
                         @endforeach
