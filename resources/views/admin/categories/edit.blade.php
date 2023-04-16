@@ -33,16 +33,14 @@
                     <div class="mb-6">
                         <label for="image" class="block mb-2 text-sm font-medium text-gray-900">Category
                             image</label>
-                        <div>
-                            <img class="w-32 h-32" src="{{ Storage::url($category->image) }}">
-                        </div>
+                        <img src="{{ Storage::url($category->image) }}" class="w-16 h-16 mb-6">
+
                         <input type="file" id="image" name="image"
-                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                            required>
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
                     </div>
 
                     <button type="submit"
-                        class="px-4 py-2 bg-indigo-500 hover:bg-indigo-700 rounded-lg text-white">Store</button>
+                        class="px-4 py-2 bg-indigo-500 hover:bg-indigo-700 rounded-lg text-white">Update</button>
                 </form>
 
             </div>
