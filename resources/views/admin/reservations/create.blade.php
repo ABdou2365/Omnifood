@@ -14,6 +14,7 @@
             <div class="p-2 m-2 bg-slate-100 rounded">
 
                 <form enctype="multipart/form-data">
+                    @csrf
                     <div class="mb-6">
                         <label for="name" class="block mb-2 text-sm font-medium text-gray-900">Category name</label>
                         <input type="name" id="name" name="name"

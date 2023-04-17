@@ -49,7 +49,8 @@
                         <select name="Categories[]" id="Categories" class="form-multiselect block w-full mt-1" multiple>
                             @foreach ($Categories as $category)
                                 {
-                                <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                <option value="{{ $category->id }}" @selected($menu->Categories->contains($category))>{{ $category->name }}
+                                </option>
                                 }
                             @endforeach
                         </select>

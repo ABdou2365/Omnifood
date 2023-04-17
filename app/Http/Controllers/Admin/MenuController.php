@@ -83,22 +83,29 @@ class MenuController extends Controller
         $image = $menu->image;
         if($request->hasFile('image')){
             Storage::delete($menu->image);
-            $image = $request->file('image')->store('public/categories');
+            $image = $request->file('image')->store('public/menus');
         }
         $menu->update([
             'name'=>$request->name,
             'description'=>$request->description,
             'image'=>$image,
+            'price'=>$request->price
 
         ]);
+        if($request->has('Categories')){
+            $menu->Categories()->sync($request->Categories);
+        }
         return to_route('admin.menus.index');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Menu $menu)
     {
-        //
+        Storage::delete($menu->image);
+        $menu->categories()->detach();
+        $menu->delete();
+                return to_route('admin.menus.index');
     }
 }
