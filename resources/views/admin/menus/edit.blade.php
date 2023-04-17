@@ -13,34 +13,35 @@
             </div>
             <div class="p-2 m-2 bg-slate-100 rounded">
 
-                <form enctype="multipart/form-data" action="{{ route('admin.menus.store') }}" method="POST">
+                <form enctype="multipart/form-data" action="{{ route('admin.menus.update', $menu->id) }}" method="POST">
                     @csrf
+                    @method('PUT')
                     <div class="mb-6">
                         <label for="name" class="block mb-2 text-sm font-medium text-gray-900">Menu name</label>
                         <input type="name" id="name" name="name"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                            required>
+                            required value="{{ $menu->name }}">
                     </div>
-
                     <div class="mb-6">
                         <label for="image" class="block mb-2 text-sm font-medium text-gray-900">Menu
                             image</label>
+                        <img src="{{ Storage::url($menu->image) }}" class="w-16 h-16 mb-6">
+
                         <input type="file" id="image" name="image"
-                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                            required>
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
                     </div>
                     <div class="mb-6">
                         <label for="price" class="block mb-2 text-sm font-medium text-gray-900">Price</label>
                         <input type="number" id="price" name="price"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                            min="0" max="10000.00" step="0.01" required>
+                            min="0" max="10000.00" step="0.01" required value="{{ $menu->price }}">
                     </div>
                     <div class="mb-6">
                         <label for="description" class="block mb-2 text-sm font-medium text-gray-900 ">
                             Description</label>
                         <textarea type="text" id="description" name="description"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-                            required></textarea>
+                            required>{{ $menu->description }}</textarea>
                     </div>
                     <div class="mb-6">
                         <label for="Categories" class="block mb-2 text-sm font-medium text-gray-900">Select
@@ -54,8 +55,9 @@
                         </select>
                     </div>
 
+
                     <button type="submit"
-                        class="px-4 py-2 bg-indigo-500 hover:bg-indigo-700 rounded-lg text-white">Store</button>
+                        class="px-4 py-2 bg-indigo-500 hover:bg-indigo-700 rounded-lg text-white">Update</button>
                 </form>
 
             </div>
