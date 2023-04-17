@@ -7,6 +7,7 @@ use App\Http\Requests\MenuStoreRequest;
 use App\Models\Category;
 use App\Models\Menu;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class MenuController extends Controller
 {
@@ -71,9 +72,26 @@ class MenuController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request,Menu $menu)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'description' =>'required',
+            'price' =>'required',
+
+        ]);
+        $image = $menu->image;
+        if($request->hasFile('image')){
+            Storage::delete($menu->image);
+            $image = $request->file('image')->store('public/categories');
+        }
+        $menu->update([
+            'name'=>$request->name,
+            'description'=>$request->description,
+            'image'=>$image,
+
+        ]);
+        return to_route('admin.menus.index');
     }
 
     /**
