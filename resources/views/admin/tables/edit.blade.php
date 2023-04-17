@@ -13,27 +13,29 @@
             </div>
             <div class="p-2 m-2 bg-slate-100 rounded">
 
-                <form action="{{ route('admin.tables.store') }}" method="POST">
+                <form action="{{ route('admin.tables.update', $table->id) }}" method="POST">
                     @csrf
+                    @method('PUT')
                     <div class="mb-6">
                         <label for="name" class="block mb-2 text-sm font-medium text-gray-900">Table name</label>
                         <input type="name" id="name" name="name"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                            required>
+                            required value="{{ $table->name }}">
                     </div>
                     <div class="mb-6">
                         <label for="guest_number" class="block mb-2 text-sm font-medium text-gray-900">Guest
                             number</label>
                         <input type="number" id="guest_number" name="guest_number"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                            min="1" max="15" step="1" required>
+                            min="1" max="15" step="1" required value="{{ $table->guest_number }}">
                     </div>
                     <div class="mb-6">
                         <label for="status" class="block mb-2 text-sm font-medium text-gray-900">Select
                             Categories</label>
                         <select name="status" id="status" class="form-multiselect block w-full mt-1">
-                            @foreach (App\Enums\TableStatus::cases() as $location)
-                                <option value="{{ $location->value }}">{{ $location->name }}</option>
+                            @foreach (App\Enums\TableStatus::cases() as $status)
+                                <option value="{{ $status->value }}" @selected($table->status->value == $status->value)>
+                                    {{ $status->name }}</option>
                             @endforeach
 
 
@@ -43,7 +45,8 @@
                         <label for="location" class="block mb-2 text-sm font-medium text-gray-900">Location</label>
                         <select name="location" id="location" class="form-multiselect block w-full mt-1">
                             @foreach (App\Enums\TableLocation::cases() as $location)
-                                <option value="{{ $location->value }}">{{ $location->name }}</option>
+                                <option value="{{ $location->value }}" @selected($table->location->value == $location->value)>
+                                    {{ $location->name }}</option>
                             @endforeach
                         </select>
                     </div>
