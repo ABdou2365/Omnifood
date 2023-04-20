@@ -19,15 +19,21 @@
                     <div class="mb-6">
                         <label for="name" class="block mb-2 text-sm font-medium text-gray-900">Table name</label>
                         <input type="name" id="name" name="name"
-                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                            required value="{{ $table->name }}">
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 @error('name') border-red-400 @enderror"
+                            value="{{ $table->name }}">
+                        @error('name')
+                            <div class="alert alert-danger text-red-400 ">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="mb-6">
                         <label for="guest_number" class="block mb-2 text-sm font-medium text-gray-900">Guest
                             number</label>
                         <input type="number" id="guest_number" name="guest_number"
-                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                            min="1" max="15" step="1" required value="{{ $table->guest_number }}">
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 @error('guest_number') border-red-400 @enderror"
+                            min="1" max="15" step="1" value="{{ $table->guest_number }}">
+                        @error('guest_number')
+                            <div class="alert alert-danger text-red-400 ">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="mb-6">
                         <label for="status" class="block mb-2 text-sm font-medium text-gray-900">Select

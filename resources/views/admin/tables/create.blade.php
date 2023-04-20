@@ -18,34 +18,47 @@
                     <div class="mb-6">
                         <label for="name" class="block mb-2 text-sm font-medium text-gray-900">Table name</label>
                         <input type="text" id="name" name="name"
-                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                            required>
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 @error('name') border-red-400 @enderror">
+                        @error('name')
+                            <div class="alert alert-danger text-red-400 ">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="mb-6">
                         <label for="guest_number" class="block mb-2 text-sm font-medium text-gray-900">Guest
                             number</label>
                         <input type="number" id="guest_number" name="guest_number"
-                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                            min="1" max="15" step="1" required>
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 @error('guest_number') border-red-400 @enderror"
+                            min="1" max="15" step="1">
+                        @error('guest_number')
+                            <div class="alert alert-danger text-red-400 ">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="mb-6">
                         <label for="status" class="block mb-2 text-sm font-medium text-gray-900">Select
                             Categories</label>
-                        <select name="status" id="status" class="form-multiselect block w-full mt-1">
+                        <select name="status" id="status"
+                            class="form-multiselect block w-full mt-1 @error('status') border-red-400 @enderror">
                             @foreach (App\Enums\TableStatus::cases() as $location)
                                 <option value="{{ $location->value }}">{{ $location->name }}</option>
                             @endforeach
 
 
                         </select>
+                        @error('status')
+                            <div class="alert alert-danger text-red-400 ">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="mb-6">
                         <label for="location" class="block mb-2 text-sm font-medium text-gray-900">Location</label>
-                        <select name="location" id="location" class="form-multiselect block w-full mt-1">
+                        <select name="location" id="location"
+                            class="form-multiselect block w-full mt-1 @error('location') border-red-400 @enderror">
                             @foreach (App\Enums\TableLocation::cases() as $location)
                                 <option value="{{ $location->value }}">{{ $location->name }}</option>
                             @endforeach
                         </select>
+                        @error('location')
+                            <div class="alert alert-danger text-red-400 ">{{ $message }}</div>
+                        @enderror
                     </div>
 
 

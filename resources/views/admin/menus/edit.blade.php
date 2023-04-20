@@ -19,8 +19,11 @@
                     <div class="mb-6">
                         <label for="name" class="block mb-2 text-sm font-medium text-gray-900">Menu name</label>
                         <input type="name" id="name" name="name"
-                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                            required value="{{ $menu->name }}">
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 @error('name') border-red-400 @enderror"
+                            value="{{ $menu->name }}">
+                        @error('name')
+                            <div class="alert alert-danger text-red-400 ">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="mb-6">
                         <label for="image" class="block mb-2 text-sm font-medium text-gray-900">Menu
@@ -28,20 +31,28 @@
                         <img src="{{ Storage::url($menu->image) }}" class="w-16 h-16 mb-6">
 
                         <input type="file" id="image" name="image"
-                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 @error('image') border-red-400 @enderror">
+                        @error('image')
+                            <div class="alert alert-danger text-red-400 ">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="mb-6">
                         <label for="price" class="block mb-2 text-sm font-medium text-gray-900">Price</label>
                         <input type="number" id="price" name="price"
-                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                            min="0" max="10000.00" step="0.01" required value="{{ $menu->price }}">
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 @error('price') border-red-400 @enderror"
+                            min="0" max="10000.00" step="0.01" value="{{ $menu->price }}">
+                        @error('price')
+                            <div class="alert alert-danger text-red-400 ">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="mb-6">
                         <label for="description" class="block mb-2 text-sm font-medium text-gray-900 ">
                             Description</label>
                         <textarea type="text" id="description" name="description"
-                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-                            required>{{ $menu->description }}</textarea>
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 @error('description') border-red-400 @enderror ">{{ $menu->description }}</textarea>
+                        @error('description')
+                            <div class="alert alert-danger text-red-400 ">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="mb-6">
                         <label for="Categories" class="block mb-2 text-sm font-medium text-gray-900">Select

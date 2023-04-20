@@ -20,15 +20,20 @@
                     <div class="mb-6">
                         <label for="name" class="block mb-2 text-sm font-medium text-gray-900">Category name</label>
                         <input type="name" id="name" name="name"
-                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                            required value="{{ $category->name }}">
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  @error('name') border-red-400 @enderror"
+                            value="{{ $category->name }}">
+                        @error('name')
+                            <div class="alert alert-danger text-red-400 ">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="mb-6">
                         <label for="description" class="block mb-2 text-sm font-medium text-gray-900 ">
                             Description</label>
                         <textarea type="text" id="description" name="description"
-                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-                            required>{{ $category->description }}</textarea>
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  @error('description') border-red-400 @enderror">{{ $category->description }}</textarea>
+                        @error('description')
+                            <div class="alert alert-danger text-red-400 ">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="mb-6">
                         <label for="image" class="block mb-2 text-sm font-medium text-gray-900">Category
@@ -36,7 +41,10 @@
                         <img src="{{ Storage::url($category->image) }}" class="w-16 h-16 mb-6">
 
                         <input type="file" id="image" name="image"
-                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  @error('image') border-red-400 @enderror">
+                        @error('image')
+                            <div class="alert alert-danger text-red-400 ">{{ $message }}</div>
+                        @enderror
                     </div>
 
                     <button type="submit"
