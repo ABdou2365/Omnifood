@@ -18,22 +18,30 @@
                     <div class="mb-6">
                         <label for="name" class="block mb-2 text-sm font-medium text-gray-900">Category name</label>
                         <input type="text" id="name" name="name"
-                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                            required>
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 @error('name') border-red-400 @enderror"
+                            value="{{ old('name') }}">
+                        @error('name')
+                            <div class="alert alert-danger text-red-400 ">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="mb-6">
                         <label for="description" class="block mb-2 text-sm font-medium text-gray-900 ">
                             Description</label>
                         <textarea type="text" id="description" name="description"
-                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-                            required></textarea>
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 @error('description') border-red-400 @enderror">{{ old('description') }}</textarea>
+                        @error('description')
+                            <div class="alert alert-danger text-red-400 ">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="mb-6">
                         <label for="image" class="block mb-2 text-sm font-medium text-gray-900">Category
                             image</label>
                         <input type="file" id="image" name="image"
-                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                            required>
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 @error('description') border-red-400 @enderror"
+                            value="{{ old('image') }}">
+                        @error('image')
+                            <div class="alert alert-danger text-red-400 ">{{ $message }}</div>
+                        @enderror
                     </div>
 
                     <button type="submit"
@@ -41,6 +49,7 @@
                 </form>
 
             </div>
+
 
         </div>
     </div>
