@@ -15,4 +15,8 @@ class Reservation extends Model
             'table_id',
             'guest_number'];
 
+        function Table(){
+            return $this->belongsTo(Table::class);
+        }
+
 }
