@@ -3,17 +3,36 @@
 namespace App\Rules;
 
 use Closure;
-use Illuminate\Contracts\Validation\ValidationRule;
+use Illuminate\Contracts\Validation\Rule;
+use Illuminate\Support\Carbon;
 
-class TimeBetween implements ValidationRule
+class DateBetween implements Rule
 {
     /**
-     * Run the validation rule.
+     * Determine if the validation rule passes.
      *
-     * @param  \Closure(string): \Illuminate\Translation\PotentiallyTranslatedString  $fail
+     * @param  string  $attribute
+     * @param  mixed  $value
+     * @return bool
      */
-    public function validate(string $attribute, mixed $value, Closure $fail): void
+    public function passes($attribute, $value)
     {
-        //
+        $pickupDate = Carbon::parse($value);
+        $pickupTime = Carbon::createFromTime($pickupDate->hour, $pickupDate->minute, $pickupDate->second);
+
+        $earliestTime  = Carbon::createFromTimeString('17:00:OO');
+        $lastTime  = Carbon::createFromTimeString('23:00:OO');
+
+        return $pickupTime->between($earliestTime,$lastTime) ? true : false;
+    }
+
+    /**
+     * Get the validation error message.
+     *
+     * @return string
+     */
+    public function message()
+    {
+        return 'Please choose a time between 17:00-23:00.';
     }
 }
