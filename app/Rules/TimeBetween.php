@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Contracts\Validation\Rule;
 use Illuminate\Support\Carbon;
 
-class DateBetween implements Rule
+class TimeBetween implements Rule
 {
     /**
      * Determine if the validation rule passes.
@@ -20,8 +20,8 @@ class DateBetween implements Rule
         $pickupDate = Carbon::parse($value);
         $pickupTime = Carbon::createFromTime($pickupDate->hour, $pickupDate->minute, $pickupDate->second);
 
-        $earliestTime  = Carbon::createFromTimeString('17:00:OO');
-        $lastTime  = Carbon::createFromTimeString('23:00:OO');
+        $earliestTime  = Carbon::createFromTimeString('17:00:00');
+        $lastTime  = Carbon::createFromTimeString('23:00:00');
 
         return $pickupTime->between($earliestTime,$lastTime) ? true : false;
     }
