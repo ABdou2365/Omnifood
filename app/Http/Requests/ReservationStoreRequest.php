@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Rules\DateBetween;
 use Illuminate\Foundation\Http\FormRequest;
 
 class ReservationStoreRequest extends FormRequest
@@ -20,13 +21,13 @@ class ReservationStoreRequest extends FormRequest
      * @return array<string, \Illuminate\Contracts\Validation\Rule|array|string>
      */
     public function rules(): array
-    { 
+    {
         return [
             'first_name'=>['required'],
             'last_name'=> ['required'],
             'email'=> ['required','email'],
             'tel_number'=>['required'],
-            'res_date'=>['required'],
+            'res_date'=>['required','date', new DateBetween],
             'table_id'=>['required'],
             'guest_number'=>['required']
         ];
